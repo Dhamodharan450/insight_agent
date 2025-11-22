@@ -1,26 +1,35 @@
 {
-  "name": "insight-bot",
+  "name": "kpi-insight-bot",
   "version": "1.0.0",
-  "description": "Mastra-based chatbot for KPIs and Insights with PostgreSQL",
-  "main": "src/index.ts",
+  "main": "index.js",
   "scripts": {
-    "dev": "npx ts-node --transpile-only src/demo.ts",
-    "start": "npx ts-node --transpile-only src/demo.ts",
-    "test": "npx ts-node --transpile-only src/test-agent.ts"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "mastra dev",
+    "build": "mastra build",
+    "start": "mastra start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "engines": {
+    "node": ">=20.9.0"
   },
   "dependencies": {
-    "@ai-sdk/google": "^2.0.25",
-    "@ai-sdk/openai": "latest",
-    "@mastra/core": "^0.23.1",
-    "@openrouter/ai-sdk-provider": "^1.2.0",
-    "dotenv": "^16.4.0",
-    "pg": "^8.11.0",
-    "zod": "^3.22.0"
+    "@ai-sdk/google": "^2.0.30",
+    "@ai-sdk/openai": "^2.0.64",
+    "@mastra/core": "^0.24.0",
+    "@mastra/evals": "^0.14.3",
+    "@mastra/libsql": "^0.16.2",
+    "@mastra/loggers": "^0.10.19",
+    "@mastra/memory": "^0.15.11",
+    "@openrouter/ai-sdk-provider": "^1.2.1",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
-    "@types/pg": "^8.11.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.3.0"
+    "@types/node": "^24.10.0",
+    "mastra": "^0.18.0",
+    "typescript": "^5.9.3"
   }
 }
