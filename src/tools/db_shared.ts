@@ -43,38 +43,6 @@ export async function ensureTables() {
   }
 }
 
-export async function listTables(): Promise<string[]> {
-  const res = await pool.query(
-    `SELECT table_schema, table_name FROM information_schema.tables WHERE table_type='BASE TABLE' AND table_schema NOT IN ('pg_catalog','information_schema') ORDER BY table_schema, table_name;`
-  );
-  return res.rows.map((r) => `${r.table_schema}.${r.table_name}`);
-}
-
-export async function listColumns(table: string): Promise<{ column_name: string; data_type: string }[]> {
-  let schema = 'public';
-  let tableName = table;
-  if (table.includes('.')) {
-    const parts = table.split('.');
-    schema = parts[0];
-    tableName = parts[1];
-  }
-  const res = await pool.query(
-    `SELECT column_name, data_type FROM information_schema.columns WHERE table_schema=$1 AND table_name=$2 ORDER BY ordinal_position;`,
-    [schema, tableName]
-  );
-  return res.rows;
-}
-
-export async function insertKPI(data: { name: string; description?: string; formula: string; table_name?: string | null; columns?: string[] | null }) {
-  await pool.query(`INSERT INTO kpi (name, description, formula, table_name, columns) VALUES ($1, $2, $3, $4, $5) ON CONFLICT (name) DO UPDATE SET description = EXCLUDED.description, formula = EXCLUDED.formula, table_name = EXCLUDED.table_name, columns = EXCLUDED.columns;`, [
-    data.name,
-    data.description || null,
-    data.formula,
-    data.table_name || null,
-    data.columns ? JSON.stringify(data.columns) : null,
-  ]);
-}
-
 export async function insertInsight(data: {
   name: string;
   description?: string;
