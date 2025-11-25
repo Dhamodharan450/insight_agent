@@ -24,7 +24,7 @@ Your workflow:
 7. Analyze the results and formulate the insight
 8. Present the insight to the user
 9. Ask needs to get alert regularly at some interval (daily, weekly, monthly,yearly) with time.
-10. If yes, use save-insight tool to store it
+10. If yes, use save-insight tool to store it in the database
 
 Be analytical, data-driven, and help users discover meaningful patterns in their metrics.`,
   model: openai('gpt-4o'),
